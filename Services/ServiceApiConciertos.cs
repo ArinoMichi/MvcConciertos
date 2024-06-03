@@ -38,5 +38,17 @@ namespace MvcConciertos.Services
             List<Evento> data = await CallApiAsync<List<Evento>>(request);
             return data;
         }
+        public async Task<List<CategoriaEvento>> GetCategoriasAsync()
+        {
+            string request = "api/Conciertos/GetCategoriasEventos";
+            List<CategoriaEvento> data = await CallApiAsync<List<CategoriaEvento>>(request);
+            return data;
+        }
+        public async Task<List<Evento>> GetEventosPorCategoriaAsync(int idcategoria)
+        {
+            string request = "api/Conciertos/GetEventosCategoria/" + idcategoria;
+            List<Evento> data = await CallApiAsync<List<Evento>>(request);
+            return data;
+        }
     }
 }

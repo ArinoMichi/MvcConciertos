@@ -6,7 +6,21 @@
 
 <h1>Index</h1>
 
-<table class="table">
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="idcategoria">Categoría</label>
+        <select id="idcategoria" name="idcategoria" class="form-control">
+            <option value="">-- Selecciona una categoría --</option>
+            @foreach (var categoria in ViewBag.Categorias)
+            {
+                <option value="@categoria.IdCategoria">@categoria.Nombre</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+<table class="table mt-4">
     <thead>
         <tr>
             <th>
@@ -28,24 +42,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdEvento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artista)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategoria)
-            </td>
-            <td>
-                <img src="@item.Imagen" style="height:100px;width:100px" />
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdEvento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artista)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCategoria)
+                </td>
+                <td>
+                    <img src="@item.Imagen" style="height:100px;width:100px" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

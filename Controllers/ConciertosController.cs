@@ -14,7 +14,19 @@ namespace MvcConciertos.Controllers
         public async Task<IActionResult> Index()
         {
             List<Evento> eventos = await this.service.GetEventosAsync();
+            List<CategoriaEvento> categorias = await this.service.GetCategoriasAsync();
+            ViewBag.Categorias = categorias;
             return View(eventos);
         }
+        [HttpPost]
+        public async Task<IActionResult> Index(int idcategoria)
+        {
+            List<Evento> eventos = await this.service.GetEventosPorCategoriaAsync(idcategoria);
+            List<CategoriaEvento> categorias = await this.service.GetCategoriasAsync();
+            ViewBag.Categorias = categorias;
+            return View(eventos);
+        }
+
+        
     }
 }
